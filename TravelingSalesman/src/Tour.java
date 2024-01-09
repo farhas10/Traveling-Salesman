@@ -16,6 +16,15 @@ public class Tour
     {
         private Point data;
         private Node next;
+        
+        public Node(Point p) {
+        	this.data = p;
+        	this.next = null;
+        }
+        
+        public Node(Point p, Node next){
+            this.data = p;
+            this.next = next;
     }
     
     /**
@@ -29,13 +38,30 @@ public class Tour
      */
     public Tour()
     {
+    	home = null;
+    	size = 0;
     }
 
     /**
      * Creates the 4-point tour a->b->c->d->a (for debugging)
      */
-    public Tour(Point a, Point b, Point c, Pointd)
+    public Tour(Point a, Point b, Point c, Point d)
     {
+    	Node A = new Node(a);
+    	Node B = new Node(b);
+    	Node C = new Node(c);
+    	Node D = new Node(d);
+    	
+    	A.next = B;
+    	size++;
+    	B.next = C;
+    	size++;
+    	C.next = D;
+    	size++;
+    	D.next = A;
+    	size++;
+    	
+    	home = A;
     }
     
     /**
@@ -43,7 +69,7 @@ public class Tour
      */
     public int size()
     {
-        return 0;
+        return size;
     }
 
     /**
