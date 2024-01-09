@@ -25,6 +25,7 @@ public class Tour
         public Node(Point p, Node next){
             this.data = p;
             this.next = next;
+        }
     }
     
     /**
@@ -47,21 +48,23 @@ public class Tour
      */
     public Tour(Point a, Point b, Point c, Point d)
     {
-    	Node A = new Node(a);
+    	
+    	
+    	
+    	home = new Node(a);
     	Node B = new Node(b);
     	Node C = new Node(c);
     	Node D = new Node(d);
     	
-    	A.next = B;
-    	size++;
+    	home.next = B;
     	B.next = C;
-    	size++;
     	C.next = D;
-    	size++;
-    	D.next = A;
-    	size++;
     	
-    	home = A;
+    	D.next = home;
+    	
+    	size = 4;
+    	
+
     }
     
     /**
@@ -77,7 +80,19 @@ public class Tour
      */
     public double length()
     {
-        return 0;
+    	if (size <= 1) {
+    		return 0;
+    	}
+        int counter = 0;
+        double sum = 0.0;
+        Node current = home;
+
+        while(counter < size) {
+        	sum += current.data.distanceTo(current.data);
+        	counter++;
+        	current = current.next;
+        }
+        return sum;
     }
 
     /**
