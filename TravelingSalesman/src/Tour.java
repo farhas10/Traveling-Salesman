@@ -137,6 +137,29 @@ public class Tour
      */
     public void insertNearest(Point p)
     {
+    	if(size == 0) {
+    		home = new Node(p);
+    		home.next = home;
+    		size = 1;
+    		return;
+    	}
+    	Node nearest = home;
+    	Node nextval = home;
+    	double minimum = Double.MAX_VALUE;
+    	int length = size;
+    	while(length > 0) {
+    		double distance = p.distanceTo(nextval.data);
+    		if(distance < minimum) {
+    			nearest = nextval;
+    			minimum = distance;
+    		}
+    		nextval = nextval.next;
+    		length--;
+    	}
+ 
+    	Node newNode = new Node(p, nextval.next);
+    	nextval.next = newNode;
+    	size++;
     }
 
     /**
