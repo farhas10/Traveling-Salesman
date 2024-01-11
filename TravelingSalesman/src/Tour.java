@@ -86,7 +86,6 @@ public class Tour
         int counter = 0;
         double sum = 0.0;
         Node current = home;
-
         while(counter < size) {
         	sum += current.data.distanceTo(current.data);
         	counter++;
@@ -101,7 +100,20 @@ public class Tour
     @Override
     public String toString()
     {
-        return null;
+    	if(size == 0) 
+    	{
+    		return null;
+    	}
+    	
+        StringBuilder string = new StringBuilder();
+        Node current = home;
+        
+        for (int i = 0; i < size; i++) {
+            string.append(current.data.toString() + "\n");
+        	current = current.next;
+        }
+
+        return string.toString();
     }
 
     /**
@@ -109,6 +121,15 @@ public class Tour
      */
     public void draw()
     {
+    	if (size <= 1) { 
+    		return;
+    				}
+    	
+    	Node current = home;
+    	for (int i = 0; i < size; i++) {
+    		current.data.drawTo(current.next.data);
+    		current = current.next;
+    	}
     }
 
     /**
@@ -123,5 +144,7 @@ public class Tour
      */
     public void insertSmallest(Point p)
     {
+    	// Create a node with the value of the point, and take the 
+    	
     }
 }
