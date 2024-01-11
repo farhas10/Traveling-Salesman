@@ -180,8 +180,8 @@ public class Tour
     	int length = size;
     	while(length > 0) {
     		double distance = p.distanceTo(nextval.data);
-    		distance -= nextval.data.distanceTo(nextval.next.data);
     		distance += p.distanceTo(nextval.next.data);
+    		distance -= nextval.data.distanceTo(nextval.next.data);
     		if(distance < minimum) {
     			smallest = nextval;
     			minimum = distance;
