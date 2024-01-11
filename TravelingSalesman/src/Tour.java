@@ -178,7 +178,7 @@ public class Tour
     	Node smallest = home;
     	Node nextval = home;
     	int length = size;
-    	while(length < size) {
+    	while(length > 0) {
     		double distance = p.distanceTo(nextval.data);
     		distance += p.distanceTo(nextval.next.data);
     		distance -= nextval.data.distanceTo(nextval.next.data);
@@ -186,7 +186,7 @@ public class Tour
     			smallest = nextval;
     			minimum = distance;
     		}
-    		length++;
+    		length--;
     		nextval = nextval.next;
     	}
     	Node newNode = new Node(p, smallest.next);
