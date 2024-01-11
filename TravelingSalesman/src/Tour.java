@@ -168,6 +168,29 @@ public class Tour
     public void insertSmallest(Point p)
     {
     	// Create a node with the value of the point, and take the 
-    	
+    	if(size == 0) {
+    		home = new Node(p);
+    		home.next = home;
+    		size = 1;
+    		return;
+    	}
+    	double minimum = Double.MAX_VALUE;
+    	Node smallest = home;
+    	Node nextval = home;
+    	int length = size;
+    	while(length > 0) {
+    		double distance = p.distanceTo(nextval.data);
+    		distance -= nextval.data.distanceTo(nextval.next.data);
+    		distance += p.distanceTo(nextval.next.data);
+    		if(distance < minimum) {
+    			smallest = nextval;
+    			minimum = distance;
+    		}
+    		length--;
+    		nextval = nextval.next;
+    	}
+    	Node newNode = new Node(p, nextval.next);
+    	nextval.next = newNode;
+    	size++;
     }
 }
