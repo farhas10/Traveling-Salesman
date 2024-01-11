@@ -189,8 +189,8 @@ public class Tour
     		length--;
     		nextval = nextval.next;
     	}
-    	Node newNode = new Node(p, nextval.next);
-    	nextval.next = newNode;
+    	Node newNode = new Node(p, smallest.next);
+    	smallest.next = newNode;
     	size++;
     }
 }
