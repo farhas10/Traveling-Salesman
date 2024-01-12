@@ -1,10 +1,10 @@
 /**
  * <pre>
- * Name:
+ * Name: Farzad Hasan
  * Mrs. Kankelborg
- * Period
+ * Period 1
  * Project 1 Traveling Salesman
- * Last Revised on: 
+ * Last Revised on: 1/11/2023
  * </pre>
  */
 public class Tour
@@ -141,18 +141,26 @@ public class Tour
      */
     public void insertNearest(Point p)
     {
+    	//If home has no contents, set home to the new point.
     	if(size == 0) {
+    		
     		home = new Node(p);
+    		//Establishes link in the list.
     		home.next = home;
     		size = 1;
     		return;
     	}
+    	//Tracks the next node
     	Node nearest = home;
+    	//Checks which node is being looked at
     	Node nextval = home;
+    	//Finding the smallest possible distance
     	double minimum = Double.MAX_VALUE;
     	int length = size;
     	while(length > 0) {
+    		//Finding the distance between current and next point
     		double distance = p.distanceTo(nextval.data);
+    		//The essence of the heuristic; if it is the closest, store this point.
     		if(distance < minimum) {
     			nearest = nextval;
     			minimum = distance;
@@ -161,6 +169,7 @@ public class Tour
     		length--;
     	}
  
+    	//Add the point to the closest point so far.
     	Node newNode = new Node(p, nearest.next);
     	nearest.next = newNode;
     	size++;
@@ -171,21 +180,23 @@ public class Tour
      */
     public void insertSmallest(Point p)
     {
-    	// Create a node with the value of the point, and take the 
+    	//If nothing is in the tour, set home to the first point.
     	if(size == 0) {
     		home = new Node(p);
+    		//Connecting the list at the end.
     		home.next = home;
     		size = 1;
     		return;
     	}
+    	//Tracking the smallest distance.
     	double minimum = Double.MAX_VALUE;
     	Node smallest = home;
     	Node nextval = home;
     	int length = size;
     	while(length > 0) {
-    		double distance = p.distanceTo(nextval.data);
-    		distance += p.distanceTo(nextval.next.data);
-    		distance -= nextval.data.distanceTo(nextval.next.data);
+    		double distance = p.distanceTo(nextval.data) + p.distanceTo(nextval.next.data) 
+    		- nextval.data.distanceTo(nextval.next.data);
+    		//Checks how much the tour changes by adding in the new point.
     		if(distance < minimum) {
     			smallest = nextval;
     			minimum = distance;
@@ -193,6 +204,8 @@ public class Tour
     		length--;
     		nextval = nextval.next;
     	}
+    	
+    	//Same as before, adds the point to the closest point so far.	
     	Node newNode = new Node(p, smallest.next);
     	smallest.next = newNode;
     	size++;
