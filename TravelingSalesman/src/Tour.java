@@ -83,13 +83,17 @@ public class Tour
     	if (size <= 1) {
     		return 0;
     	}
-        int counter = 0;
-        double sum = 0.0;
-        Node current = home;
-        while(counter < size) {
-        	sum += current.data.distanceTo(current.data);
-        	counter++;
-        	current = current.next;
+
+        Node temp = home;
+        int num = 0;
+        double sum = 0;
+
+        while(!temp.equals(home) || num == 0) {
+
+            sum += temp.data.distanceTo(temp.next.data);
+            
+            temp = temp.next;
+            num++;
         }
         return sum;
     }
