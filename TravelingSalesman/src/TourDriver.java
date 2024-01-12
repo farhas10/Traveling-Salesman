@@ -22,8 +22,10 @@ public class TourDriver
             String nextLine = bf.readLine();
             while (nextLine != null && !nextLine.equals(""))
             {
-                // Add your code here to parse each line of the input.
-                nextLine = bf.readLine();
+                nextLine = nextLine.trim();
+                String[] coords = nextLine.split(" ");
+                test.insertSmallest(new Point(Double.parseDouble(coords[0].trim()), Double.parseDouble(coords[1].trim())));
+                nextLine = bf.readLine().trim();
             }
             bf.close();
         }
